@@ -1,0 +1,41 @@
+﻿{
+  "wrapped": 
+    [      
+      {
+        "name": "Pepsi",
+        "price": 60,
+        "left": 10,
+        "image": "pepsi-img.png"
+      },
+      {
+        "name": "BonAqua",
+        "price": 45,
+        "left": 8,
+        "image": "bonaqua-img.png"
+      },
+      {
+        "name": "Twix",
+        "price": 50,
+        "left": 13,
+        "image": "twix-img.png"
+      },
+      {
+        "name": "Oreo",
+        "price": 120,
+        "left": 6,
+        "image": "oreo-img.png"
+      },
+      {
+        "name": "Ice Tea",
+        "price": 58,
+        "left": 11,
+        "image": "ice-tea-img.png"
+      },
+      {
+        "name": "Snickers",
+        "price": 50,
+        "left": 5,
+        "image": "snickers-img.png"
+      }
+    ]
+}
