@@ -7,7 +7,13 @@
         mc:Ignorable="d"        
         Height="540" Width="960">
     <Grid>
-        <Grid x:Name="ProductsGrid">
+
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="50">
+            <Label x:Name="CreditLabel" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10, 0, 0, 0">Credit: 150</Label>
+            <Button x:Name="ChangeButton" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0, 0, 10, 0" Padding="30, 5">Change</Button>
+        </Grid>
+        
+        <Grid x:Name="ProductsGrid" Margin="0, 50, 0, 0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
                 <ColumnDefinition Width="*"></ColumnDefinition>

@@ -1,3 +1,44 @@
 ﻿{
-
+  "wrapped": [
+    {
+      "isCoin": true,
+      "value": 1,
+      "amount": 1000
+    },
+    {
+      "isCoin": true,
+      "value": 2,
+      "amount": 1000
+    },
+    {
+      "isCoin": true,
+      "value": 5,
+      "amount": 1000
+    },
+    {
+      "isCoin": true,
+      "value": 10,
+      "amount": 1000
+    },
+    {
+      "isCoin": false,
+      "value": 50,
+      "amount": 1000
+    },
+    {
+      "isCoin": false,
+      "value": 100,
+      "amount": 1000
+    },
+    {
+      "isCoin": false,
+      "value": 500,
+      "amount": 1000
+    },
+    {
+      "isCoin": false,
+      "value": 1000,
+      "amount": 1000
+    }
+  ]
 }

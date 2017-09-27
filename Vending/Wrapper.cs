@@ -11,21 +11,7 @@ namespace Vending
     public class Wrapper<T>
     {
         public T[] wrapped { get; set; }
-
-        public int Count
-        {
-            get
-            {
-                return wrapped.Length;
-            }
-        }
-
-        public T this[int index]
-        {
-            get
-            {
-                return wrapped[index];
-            }
-        }
+        public int Count => wrapped.Length;
+        public T this[int index] => wrapped[index];
     }
 }
