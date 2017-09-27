@@ -11,7 +11,7 @@ namespace Vending
     public class Wrapper<T>
     {
         public T[] wrapped { get; set; }
-        public int Count => wrapped.Length;
+        public int Count => wrapped != null ? wrapped.Length : 0;
         public T this[int index] => wrapped[index];
     }
 }

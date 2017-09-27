@@ -10,13 +10,22 @@ namespace Vending
 {
     public static class JsonParser
     {
-        public static Wrapper<T> Read<T>(string fileName, JsonItemConverter<T> converter)
+        public static Wrapper<T> ReadCollection<T>(string fileName, JsonItemConverter<T> converter=null)
         {
             using (StreamReader reader = new StreamReader(Path.Combine(Config.JsonPath, fileName)))
             {
                 var json = reader.ReadToEnd();
                 if(converter == null) return JsonConvert.DeserializeObject<Wrapper<T>>(json);
                 else return JsonConvert.DeserializeObject<Wrapper<T>>(json, converter);
+            }
+        }
+
+        public static T Read<T>(string fileName)
+        {
+            using (StreamReader reader = new StreamReader(Path.Combine(Config.JsonPath, fileName)))
+            {
+                var json = reader.ReadToEnd();
+                return JsonConvert.DeserializeObject<T>(json);
             }
         }
     }

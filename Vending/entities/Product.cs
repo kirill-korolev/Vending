@@ -17,6 +17,7 @@ namespace Vending
         string IGridRendered.Description => String.Concat(Price, " RUB");
         string IGridRendered.Additional => String.Concat(Left, " left");
         string IGridRendered.ImagePath => Image;
+        bool IGridRendered.Active => Left > 0;
 
         public Product()
         {

@@ -20,9 +20,19 @@ namespace Vending
             this.money = money;
         }
 
-        public void Insert(int money)
+        public void Insert(int value)
         {
+            //TODO
+        }
 
+        public List<Coin> Coins()
+        {
+            List<Coin> coins = new List<Coin>();
+
+            for(int i = 0; i < money.Count; i++)
+                if (money[i] is Coin) coins.Add(money[i] as Coin);
+
+            return coins;
         }
     }
 }

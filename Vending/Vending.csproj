@@ -67,7 +67,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Compile Include="CashAcceptor.cs" />
     <Compile Include="Cashier.cs" />
+    <Compile Include="ChangeEngine.cs" />
     <Compile Include="config\Config.cs" />
     <Compile Include="config\ConfigData.cs" />
     <Compile Include="config\App.xaml.cs">
@@ -77,16 +79,16 @@
     <Compile Include="entities\Money.cs" />
     <Compile Include="gui\GridCell.cs" />
     <Compile Include="ISellable.cs" />
-    <Compile Include="JsonItemConverter.cs" />
-    <Compile Include="Renderer.cs" />
+    <Compile Include="io\json\JsonItemConverter.cs" />
+    <Compile Include="gui\Renderer.cs" />
     <Compile Include="Storage.cs" />
     <Compile Include="VMachine.cs" />
-    <Compile Include="WindowLocator.cs" />
+    <Compile Include="gui\WindowLocator.cs" />
     <Compile Include="windows\IEmulationWindow.xaml.cs">
       <DependentUpon>IEmulationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IGridRendered.cs" />
-    <Compile Include="JsonParser.cs" />
+    <Compile Include="gui\interfaces\IGridRendered.cs" />
+    <Compile Include="io\json\JsonParser.cs" />
     <Compile Include="windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -94,7 +96,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="entities\Product.cs" />
-    <Compile Include="Wrapper.cs" />
+    <Compile Include="io\json\Wrapper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -112,7 +114,8 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
+    <None Include="content\json\cash-acceptor-interface.json" />
+    <None Include="config\packages.config" />
     <None Include="content\json\products.json" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

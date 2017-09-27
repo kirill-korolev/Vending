@@ -4,13 +4,9 @@ C:\Users\student\Desktop\Vending\Vending\bin\Debug\Vending.pdb
 C:\Users\student\Desktop\Vending\Vending\bin\Debug\Newtonsoft.Json.dll
 C:\Users\student\Desktop\Vending\Vending\bin\Debug\Newtonsoft.Json.xml
 C:\Users\student\Desktop\Vending\Vending\obj\Debug\Vending.csprojResolveAssemblyReference.cache
-C:\Users\student\Desktop\Vending\Vending\obj\Debug\IEmulationWindow.g.cs
-C:\Users\student\Desktop\Vending\Vending\obj\Debug\MainWindow.g.cs
 C:\Users\student\Desktop\Vending\Vending\obj\Debug\config\App.g.cs
 C:\Users\student\Desktop\Vending\Vending\obj\Debug\Vending_MarkupCompile.cache
 C:\Users\student\Desktop\Vending\Vending\obj\Debug\Vending_MarkupCompile.lref
-C:\Users\student\Desktop\Vending\Vending\obj\Debug\IEmulationWindow.baml
-C:\Users\student\Desktop\Vending\Vending\obj\Debug\MainWindow.baml
 C:\Users\student\Desktop\Vending\Vending\obj\Debug\Vending.g.resources
 C:\Users\student\Desktop\Vending\Vending\obj\Debug\Vending.Properties.Resources.resources
 C:\Users\student\Desktop\Vending\Vending\obj\Debug\Vending.csproj.GenerateResource.Cache
@@ -35,3 +31,7 @@ C:\Users\kafaf\Documents\vending\Vending\obj\Debug\windows\IEmulationWindow.g.cs
 C:\Users\kafaf\Documents\vending\Vending\obj\Debug\windows\MainWindow.g.cs
 C:\Users\kafaf\Documents\vending\Vending\obj\Debug\windows\IEmulationWindow.baml
 C:\Users\kafaf\Documents\vending\Vending\obj\Debug\windows\MainWindow.baml
+C:\Users\student\Desktop\vending\Vending\obj\Debug\windows\IEmulationWindow.g.cs
+C:\Users\student\Desktop\vending\Vending\obj\Debug\windows\MainWindow.g.cs
+C:\Users\student\Desktop\vending\Vending\obj\Debug\windows\IEmulationWindow.baml
+C:\Users\student\Desktop\vending\Vending\obj\Debug\windows\MainWindow.baml

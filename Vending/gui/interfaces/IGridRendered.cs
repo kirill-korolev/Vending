@@ -12,5 +12,6 @@ namespace Vending
          string Description { get; }
          string Additional { get; }
          string ImagePath { get; }
+         bool Active { get; }
     }
 }

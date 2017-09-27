@@ -18,21 +18,11 @@ namespace Vending
     public class Coin : Money
     {
         public Coin(): base() { }
-
-        public override string ToString()
-        {
-            return "I'm coin";
-        }
     }
 
     public class Bill : Money
     {
         public Bill() : base() { }
-
-        public override string ToString()
-        {
-            return "I'm bill";
-        }
     }
 
 }

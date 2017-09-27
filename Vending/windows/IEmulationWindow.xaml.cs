@@ -19,7 +19,7 @@ namespace Vending
     /// </summary>
     public partial class IEmulationWindow : Window
     {
-        private readonly List<int> banknotes = new List<int>() { 10, 50, 100, 500, 1000 };
+        private readonly List<int> cash;
         private double aspectRatio = 0.5;
 
         public delegate void CashInserted(int banknote);
@@ -28,11 +28,19 @@ namespace Vending
         public IEmulationWindow()
         {
             InitializeComponent();
+            Init();
 
+            CashAcceptor.Init("cash-acceptor-interface.json");
+
+            cash = CashAcceptor.CashSupported;
+        }
+
+        public void Init()
+        {
             double width = 270;
             double height = width / aspectRatio;
 
-            Config.Init(this, "Cash Acceptor Emulator", width, height, minWidth: width, minHeight: height);         
+            Config.Init(this, "Cash Acceptor Emulator", width, height, minWidth: width, minHeight: height);
         }
 
         public void RenderButtons(DockPanel panel, List<int> list)
@@ -53,7 +61,7 @@ namespace Vending
         public void OnLoadCallback(object sender, EventArgs e)
         {
             IEmulationWindow window = sender as IEmulationWindow;
-            RenderButtons(window?.Panel, banknotes);
+            RenderButtons(window?.Panel, cash);
         }
 
         public void OnResizeCallback(object sender, SizeChangedEventArgs e)
@@ -73,7 +81,7 @@ namespace Vending
         {
             var btn = sender as Button;
             int index = Panel.Children.IndexOf(btn);
-            int banknote = banknotes[index];
+            int banknote = cash[index];
             CashInsertedEvent?.Invoke(banknote);
         }
     }

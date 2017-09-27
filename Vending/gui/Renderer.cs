@@ -35,7 +35,9 @@ namespace Vending
                 }
 
                 GridCell<T> cell = new GridCell<T>(data[i]);
-                cell.MouseDoubleClick += OnGridCellClickCallback;
+
+                if(data[i].Active) cell.MouseDoubleClick += OnGridCellClickCallback;
+                else cell.Opacity = 0.5;
 
                 Grid.SetRow(cell, row);
                 Grid.SetColumn(cell, col);

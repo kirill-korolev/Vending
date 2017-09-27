@@ -36,6 +36,7 @@ namespace Vending
             machine = new VMachine();
             machine.LoadProducts("products.json");
             machine.LoadStorage("storage.json");
+            machine.OnChangeReturnCallback += OnReturnChangeCallback;
 
             renderer = new Renderer<Product>();
             renderer.OnGridCellClick += OnGridCellClickCallback<Product>;
@@ -48,7 +49,7 @@ namespace Vending
             emulationWindow.Show();
         }
 
-        public void Init()
+        private void Init()
         {
             Config.Init(this, "Vending Machine", width: 960, height: 540, minWidth: 768, minHeight: 432);
 
@@ -58,12 +59,12 @@ namespace Vending
             WindowLocator.Center(this, emulationWindow, 50);
         }
 
-        public void OnLoadCallback()
+        private void OnLoadCallback()
         {
             
         }
 
-        public void OnGridCellClickCallback<T>(object sender, EventArgs e) where T: IGridRendered
+        private void OnGridCellClickCallback<T>(object sender, EventArgs e) where T: IGridRendered
         {
             var gridCell = sender as GridCell<T>;
 
@@ -79,15 +80,38 @@ namespace Vending
             UpdateCreditLabel();
         }
 
-        public void OnCashInsertedCallBack(int banknote)
+        private void OnCashInsertedCallBack(int banknote)
         {
             cashier.Add(banknote);
             machine.Insert(banknote);
             UpdateCreditLabel();
         }
 
+        private void OnChangeButtonClickCallback(object sender, EventArgs e)
+        {
+            machine.Change(cashier.Credit);
+        }
 
-        public void UpdateCreditLabel()
+        private void OnReturnChangeCallback(bool success, List<ChangeEngine.Change> info)
+        {
+            if (!success)
+                MessageBox.Show("Unfortunately, the change cannot be returned");
+            else
+            {
+                string s = "";
+
+                foreach(var o in info)
+                {
+                    s += "Coin: " + o.coin + " Amount: " + o.amount + "\n";
+                }
+
+                MessageBox.Show(s);
+                cashier.Reset();
+                UpdateCreditLabel();
+            }
+        }
+
+        private void UpdateCreditLabel()
         {
             CreditLabel.Content = String.Concat("Credit: ", String.Concat(cashier.Credit, " RUB"));
         }

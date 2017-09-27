@@ -26,6 +26,11 @@ namespace Vending
             Credit += value;
         }
 
+        public void Reset()
+        {
+            Credit = 0;
+        }
+
         public void Buy<T>(ISellable product)
         {
             if (product == null)

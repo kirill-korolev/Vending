@@ -10,7 +10,7 @@
       {
         "name": "BonAqua",
         "price": 45,
-        "left": 8,
+        "left": 0,
         "image": "bonaqua-img.png"
       },
       {
@@ -34,7 +34,7 @@
       {
         "name": "Snickers",
         "price": 50,
-        "left": 5,
+        "left": 0,
         "image": "snickers-img.png"
       }
     ]
