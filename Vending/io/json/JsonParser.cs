@@ -15,7 +15,8 @@ namespace Vending
             using (StreamReader reader = new StreamReader(Path.Combine(Config.JsonPath, fileName)))
             {
                 var json = reader.ReadToEnd();
-                if(converter == null) return JsonConvert.DeserializeObject<Wrapper<T>>(json);
+
+                if (converter == null) return JsonConvert.DeserializeObject<Wrapper<T>>(json);
                 else return JsonConvert.DeserializeObject<Wrapper<T>>(json, converter);
             }
         }
@@ -26,6 +27,15 @@ namespace Vending
             {
                 var json = reader.ReadToEnd();
                 return JsonConvert.DeserializeObject<T>(json);
+            }
+        }
+
+        public static void Write<T>(string fileName, T obj)
+        {
+            using (StreamWriter writer = new StreamWriter(Path.Combine(Config.JsonPath, fileName)))
+            {               
+                string output = JsonConvert.SerializeObject(obj, Formatting.Indented);
+                writer.Write(output);
             }
         }
     }

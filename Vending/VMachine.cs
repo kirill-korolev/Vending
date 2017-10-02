@@ -10,18 +10,18 @@ namespace Vending
     {
         private Storage storage;
         private Wrapper<Product> products;
-        private ChangeEngine changer;
-
-        public delegate void ChangeReturn(bool success, List<ChangeEngine.Change> info);
-        public event ChangeReturn OnChangeReturnCallback;
 
         public Wrapper<Product> Products => products;
+        public Storage Storage => storage;
+
+        public class VMachineException : Exception
+        {
+            public VMachineException(string message) : base(message) { }
+        }
 
         public VMachine()
         {
             storage = new Storage();
-            changer = new ChangeEngine(storage);
-            changer.OnReturnChangeCallback += OnReturnChangeCallback;
         }
 
         public void LoadProducts(string fileName)
@@ -35,19 +35,50 @@ namespace Vending
             storage.Init(money);
         }
 
-        public void Insert(int money)
+        public void PreserveProducts(string fileName)
+        {
+            try
+            {
+                JsonParser.Write<Wrapper<Product>>(fileName, products);
+            }
+            catch
+            {
+                throw new Exception("Can't preserve products state.");
+            }
+        }
+
+        public void PreserveStorage(string fileName)
+        {
+            try
+            {
+                JsonParser.Write<Wrapper<Money>>(fileName, storage.GetMoney());
+            }
+            catch
+            {
+                throw new Exception("Can't preserve cash state.");
+            }
+        }
+
+        public void UpdateStorage(int money)
         {
             storage.Insert(money);
         }
 
-        public void Change(int fromCredit)
+        public void UpdateProducts(ISellable product)
         {
-            changer.Return(fromCredit);
-        }
-
-        private void OnReturnChangeCallback(bool success, List<ChangeEngine.Change> info)
-        {
-            OnChangeReturnCallback.Invoke(success, info);
+            for(int i = 0; i < products.Count; i++)
+            {
+                if(product.Price == products[i].Price)
+                {
+                    if (products[i].Left > 0)
+                    {
+                        products[i].Left--;
+                        break;
+                    }
+                    else
+                        throw new VMachineException("Can't fetch this current product from storage. Nothing left.");
+                }
+            }
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Vending
     {
         public override Money Create(Type objectType, JObject jObject)
         {
-            bool isCoin = (bool)jObject.Property("isCoin");
+            bool isCoin = (bool)jObject.Property("IsCoin");
 
             switch (isCoin)
             {

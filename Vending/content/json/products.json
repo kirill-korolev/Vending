@@ -1,41 +1,40 @@
-﻿{
-  "wrapped": 
-    [      
-      {
-        "name": "Pepsi",
-        "price": 60,
-        "left": 10,
-        "image": "pepsi-img.png"
-      },
-      {
-        "name": "BonAqua",
-        "price": 45,
-        "left": 0,
-        "image": "bonaqua-img.png"
-      },
-      {
-        "name": "Twix",
-        "price": 50,
-        "left": 13,
-        "image": "twix-img.png"
-      },
-      {
-        "name": "Oreo",
-        "price": 120,
-        "left": 6,
-        "image": "oreo-img.png"
-      },
-      {
-        "name": "Ice Tea",
-        "price": 58,
-        "left": 11,
-        "image": "ice-tea-img.png"
-      },
-      {
-        "name": "Snickers",
-        "price": 50,
-        "left": 0,
-        "image": "snickers-img.png"
-      }
-    ]
+{
+  "Wrapped": [
+    {
+      "Name": "Pepsi",
+      "Price": 60,
+      "Left": 10,
+      "Image": "pepsi-img.png"
+    },
+    {
+      "Name": "BonAqua",
+      "Price": 45,
+      "Left": 3,
+      "Image": "bonaqua-img.png"
+    },
+    {
+      "Name": "Twix",
+      "Price": 50,
+      "Left": 5,
+      "Image": "twix-img.png"
+    },
+    {
+      "Name": "Oreo",
+      "Price": 120,
+      "Left": 6,
+      "Image": "oreo-img.png"
+    },
+    {
+      "Name": "Ice Tea",
+      "Price": 58,
+      "Left": 11,
+      "Image": "ice-tea-img.png"
+    },
+    {
+      "Name": "Snickers",
+      "Price": 50,
+      "Left": 0,
+      "Image": "snickers-img.png"
+    }
+  ]
 }

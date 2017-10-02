@@ -26,7 +26,7 @@ namespace Vending
         private Cashier cashier;
         private VMachine machine;
 
-        private Renderer<Product> renderer;
+        private Renderer<IGridRendered> renderer;
 
         public MainWindow()
         {
@@ -36,13 +36,16 @@ namespace Vending
             machine = new VMachine();
             machine.LoadProducts("products.json");
             machine.LoadStorage("storage.json");
-            machine.OnChangeReturnCallback += OnReturnChangeCallback;
 
-            renderer = new Renderer<Product>();
-            renderer.OnGridCellClick += OnGridCellClickCallback<Product>;
-            renderer.RenderGrid(ProductsGrid, machine.Products);
+            renderer = new Renderer<IGridRendered>();
+            renderer.OnGridCellClick += OnGridCellClickCallback;
 
-            cashier = new Cashier();
+
+            renderer.RenderGrid(ProductsGrid, machine.Products.Wrapped.Cast<IGridRendered>().ToList());
+
+            cashier = new Cashier(machine.Storage);
+            cashier.OnChangeReturnCallback += OnReturnChangeCallback;
+
             UpdateCreditLabel();
 
             this.Show();
@@ -59,37 +62,57 @@ namespace Vending
             WindowLocator.Center(this, emulationWindow, 50);
         }
 
-        private void OnLoadCallback()
+        private void OnLoadCallback(object sender, EventArgs e)
         {
-            
+            renderer.HandleGrid(ProductsGrid);
         }
 
-        private void OnGridCellClickCallback<T>(object sender, EventArgs e) where T: IGridRendered
+        private void OnCloseCallback(object sender, EventArgs e)
         {
-            var gridCell = sender as GridCell<T>;
+            machine.PreserveProducts("products.json");
+            machine.PreserveStorage("storage.json");
+            emulationWindow.Close();
+        }
+
+        private void OnGridCellClickCallback(object sender, EventArgs e)
+        {
+            var gridCell = sender as GridCell<IGridRendered>;
 
             try
             {
-                cashier.Buy<T>(gridCell.Data as ISellable);
+                ISellable sellable = gridCell.Data as ISellable;
+
+                if (cashier.CheckPurchase(sellable))
+                {
+                    machine.UpdateProducts(sellable);
+                    cashier.SubmitPurchase(sellable);
+                }
+                
+                renderer.UpdateCell(gridCell, gridCell.Data);
             }
             catch(Cashier.CashierException exc)
             {
                 MessageBox.Show(exc.Message);
             }
-            
+            catch(VMachine.VMachineException exc)
+            {
+                MessageBox.Show(exc.Message);
+            }
+
+            renderer.UpdateGrid(ProductsGrid);
             UpdateCreditLabel();
         }
 
         private void OnCashInsertedCallBack(int banknote)
         {
             cashier.Add(banknote);
-            machine.Insert(banknote);
+            machine.UpdateStorage(banknote);
             UpdateCreditLabel();
         }
 
         private void OnChangeButtonClickCallback(object sender, EventArgs e)
         {
-            machine.Change(cashier.Credit);
+            cashier.Change(cashier.Credit);
         }
 
         private void OnReturnChangeCallback(bool success, List<ChangeEngine.Change> info)
@@ -98,11 +121,11 @@ namespace Vending
                 MessageBox.Show("Unfortunately, the change cannot be returned");
             else
             {
-                string s = "";
+                string s = "Your change \n";
 
                 foreach(var o in info)
                 {
-                    s += "Coin: " + o.coin + " Amount: " + o.amount + "\n";
+                    s += "coin: " + o.Coin + " amount: " + o.Amount + "\n";
                 }
 
                 MessageBox.Show(s);

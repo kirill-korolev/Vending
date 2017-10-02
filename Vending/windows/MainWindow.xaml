@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Vending"
         mc:Ignorable="d"        
-        Height="540" Width="960">
+        Height="540" Width="960" Loaded="OnLoadCallback" Closed="OnCloseCallback">
     <Grid>
 
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Top" Height="50">

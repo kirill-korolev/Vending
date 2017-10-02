@@ -17,7 +17,7 @@ namespace Vending
         public Label AdditionalLabel { get; private set; }
         public Image Image { get; private set; }
         public StackPanel Panel { get; private set; }
-        public T Data { get; }
+        public T Data { get; private set; }
 
         public GridCell(T data) : base()
         {
@@ -37,6 +37,8 @@ namespace Vending
             HeaderLabel.Content = data.Header;
             DescriptionLabel.Content = data.Description;
             AdditionalLabel.Content = data.Additional;
+
+            HeaderLabel.FontSize = 16;
 
             //Components margins
 
@@ -59,6 +61,12 @@ namespace Vending
             Panel.Children.Add(AdditionalLabel);
 
             this.AddChild(Panel);
+        }
+
+        public void Update(T data)
+        {
+            Data = data;
+            AdditionalLabel.Content = Data.Additional;
         }
         
     }

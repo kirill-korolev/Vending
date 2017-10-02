@@ -9,7 +9,7 @@ using System.Windows.Input;
 
 namespace Vending
 {
-    public class Renderer<T> where T: IGridRendered
+    public class Renderer<T> where T: class, IGridRendered
     {
 
         public event MouseButtonEventHandler OnGridCellClick;
@@ -19,7 +19,7 @@ namespace Vending
 
         }
 
-        public void RenderGrid(Grid grid, Wrapper<T> data)
+        public void RenderGrid(Grid grid, List<T> data)
         {
 
             int columns = grid.ColumnDefinitions.Count;
@@ -35,15 +35,42 @@ namespace Vending
                 }
 
                 GridCell<T> cell = new GridCell<T>(data[i]);
-
-                if(data[i].Active) cell.MouseDoubleClick += OnGridCellClickCallback;
-                else cell.Opacity = 0.5;
+                ActiveCheck(cell);
 
                 Grid.SetRow(cell, row);
                 Grid.SetColumn(cell, col);
                 grid.Children.Add(cell);
             }
 
+        }
+
+        public void UpdateCell(GridCell<IGridRendered> cell, IGridRendered data)
+        {
+            cell.Update(data as T);
+        }
+
+        public void HandleGrid(Grid grid)
+        {           
+            foreach(GridCell<T> cell in grid.Children)
+            {
+                double width = cell.ActualWidth;
+                double k = 0.5;
+                cell.Image.Width = width * k;
+                cell.Image.Height = width * k;
+            }
+        }
+
+        public void UpdateGrid(Grid grid)
+        {
+            foreach(GridCell<T> cell in grid.Children)
+                ActiveCheck(cell);
+        }
+
+        public void ActiveCheck(GridCell<T> cell)
+        {
+            cell.MouseDoubleClick -= OnGridCellClickCallback;
+            if (cell.Data.Active) cell.MouseDoubleClick += OnGridCellClickCallback;
+            else cell.Opacity = 0.5;
         }
 
         public void OnGridCellClickCallback(object sender, MouseButtonEventArgs e)

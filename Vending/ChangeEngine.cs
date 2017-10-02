@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 
 namespace Vending
 {
+    public enum ChangeMethod
+    {
+        Greedy, Dynamic
+    }
 
     public class ChangeEngine
     {
@@ -13,30 +17,54 @@ namespace Vending
         public event ReturnChange OnReturnChangeCallback;
 
         private Storage internalStorage;
+        public ChangeMethod ChangeMethod;
 
         public class Change
         {
-            public int coin, amount;
+            public int Coin { get; set; }
+            public int Amount { get; set; }
 
             public Change(int c, int a)
             {
-                coin = c; amount = a;
+                Coin = c; Amount = a;
             }
         }
 
-        public ChangeEngine(Storage storage)
+        public ChangeEngine(Storage storage, ChangeMethod method=ChangeMethod.Greedy)
         {
             internalStorage = storage;
+            ChangeMethod = method;
         }
 
         public void Return(int fromCredit)
         {
-            List<Coin> coins = internalStorage.Coins();
+            bool success;
+            List<Change> changes = new List<Change>();
+            List<Coin> coins = internalStorage.GetCoins();
+
+            switch (ChangeMethod)
+            {
+                case ChangeMethod.Greedy:
+                    success = this.ReturnGreedy(fromCredit, coins, ref changes);
+                    break;
+                case ChangeMethod.Dynamic:
+                    success = this.ReturnDynamic(fromCredit, coins, ref changes);
+                    break;
+                default:
+                    success = false;
+                    break;
+            }
+
+            if (success) internalStorage.Update(changes);
+            OnReturnChangeCallback.Invoke(success, changes);
+        }
+
+        public bool ReturnGreedy(int fromCredit, List<Coin> coins, ref List<Change> changes)
+        {
             coins.OrderBy(coin => coin.Value);
 
             bool success = false;
             int i = coins.Count - 1;
-            List<Change> changes = new List<Change>();
 
             while(fromCredit > 0)
             {                
@@ -48,7 +76,7 @@ namespace Vending
                     coin.Amount--;
                     int j = coins.Count - i - 1;
                     if (changes.ElementAtOrDefault(j) == null) changes.Add(new Change(coin.Value, 1));
-                    else changes[j].amount++;
+                    else changes[j].Amount++;
                 }
 
                 if (fromCredit == 0)
@@ -60,7 +88,13 @@ namespace Vending
                 i--;
             }
 
-            OnReturnChangeCallback.Invoke(success, changes);
+            return success;
+        }
+
+        public bool ReturnDynamic(int fromCredit, List<Coin> coins, ref List<Change> changes)
+        {
+            //NOT IMPLEMENTED YET
+            return false;
         }
 
     }
