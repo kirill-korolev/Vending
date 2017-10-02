@@ -15,19 +15,19 @@
     {
       "Name": "Twix",
       "Price": 50,
-      "Left": 5,
+      "Left": 4,
       "Image": "twix-img.png"
     },
     {
       "Name": "Oreo",
       "Price": 120,
-      "Left": 6,
+      "Left": 5,
       "Image": "oreo-img.png"
     },
     {
       "Name": "Ice Tea",
       "Price": 58,
-      "Left": 11,
+      "Left": 10,
       "Image": "ice-tea-img.png"
     },
     {

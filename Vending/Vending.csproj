@@ -59,17 +59,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="windows\IEmulationWindow.xaml">
+    <Page Include="IEmulationWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="windows\MainWindow.xaml">
+    <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="CashAcceptor.cs" />
-    <Compile Include="Cashier.cs" />
-    <Compile Include="ChangeEngine.cs" />
+    <Compile Include="logic\CashAcceptor.cs" />
+    <Compile Include="logic\Cashier.cs" />
+    <Compile Include="logic\ChangeEngine.cs" />
     <Compile Include="config\Config.cs" />
     <Compile Include="config\ConfigData.cs" />
     <Compile Include="config\App.xaml.cs">
@@ -78,18 +78,18 @@
     </Compile>
     <Compile Include="entities\Money.cs" />
     <Compile Include="gui\GridCell.cs" />
-    <Compile Include="ISellable.cs" />
+    <Compile Include="logic\ISellable.cs" />
     <Compile Include="io\json\JsonItemConverter.cs" />
     <Compile Include="gui\Renderer.cs" />
-    <Compile Include="Storage.cs" />
-    <Compile Include="VMachine.cs" />
+    <Compile Include="logic\Storage.cs" />
+    <Compile Include="logic\VMachine.cs" />
     <Compile Include="gui\WindowLocator.cs" />
-    <Compile Include="windows\IEmulationWindow.xaml.cs">
+    <Compile Include="IEmulationWindow.xaml.cs">
       <DependentUpon>IEmulationWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="gui\interfaces\IGridRendered.cs" />
     <Compile Include="io\json\JsonParser.cs" />
-    <Compile Include="windows\MainWindow.xaml.cs">
+    <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>

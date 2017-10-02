@@ -2,42 +2,42 @@
   "Wrapped": [
     {
       "Value": 1,
-      "Amount": 5,
+      "Amount": 20,
       "IsCoin": true
     },
     {
       "Value": 2,
-      "Amount": 4,
+      "Amount": 9,
       "IsCoin": true
     },
     {
       "Value": 5,
-      "Amount": 4,
+      "Amount": 7,
       "IsCoin": true
     },
     {
       "Value": 10,
-      "Amount": 833,
+      "Amount": 53,
       "IsCoin": true
     },
     {
       "Value": 50,
-      "Amount": 1001,
+      "Amount": 32,
       "IsCoin": false
     },
     {
       "Value": 100,
-      "Amount": 1001,
+      "Amount": 53,
       "IsCoin": false
     },
     {
       "Value": 500,
-      "Amount": 1003,
+      "Amount": 13,
       "IsCoin": false
     },
     {
       "Value": 1000,
-      "Amount": 1000,
+      "Amount": 43,
       "IsCoin": false
     }
   ]
